@@ -5947,25 +5947,27 @@ ul {
 
 header {
   padding: 10px 0px;
-  background-color: #212121; }
+  background-color: #fff; }
   header .navbar {
     min-height: 30px;
     margin-bottom: 0px; }
     header .navbar .navbar-brand {
       padding: 0px 15px;
       height: auto; }
+      header .navbar .navbar-brand img {
+        margin-top: 5px; }
     header .navbar li a {
       font-size: 13px;
       text-transform: uppercase;
       border-radius: 4px;
       line-height: 10px;
-      color: #fff; }
+      color: #000; }
       header .navbar li a.blue {
         color: #00131b; }
       header .navbar li a:hover, header .navbar li a:focus, header .navbar li a:active {
         background-color: transparent;
         text-decoration: none;
-        color: #c6ffed; }
+        color: #e9928c; }
       header .navbar li a.blue-btn {
         background-color: #e2e2e2;
         color: #000;
@@ -5979,7 +5981,7 @@ header {
         border: 1px solid #363e43;
         margin: 0px 10px; }
     header .navbar li.active a {
-      color: #c6ffed; }
+      color: #e9928c; }
     header .navbar li.call-li .triangle-holder {
       position: absolute;
       left: 0;
@@ -6428,7 +6430,6 @@ footer {
   position: relative; }
   .carousel-holder #owl-demo-1 .owl-controls,
   .carousel-holder #owl-demo-2 .owl-controls,
-  .carousel-holder #owl-demo-3 .owl-controls,
   .carousel-holder #owl-demo-4 .owl-controls {
     display: none !important; }
   @media screen and (max-width: 1024px) {

@@ -1,12 +1,15 @@
 header {
     padding: 10px 0px;
-    background-color: #212121;
+    background-color: #fff;
     .navbar {
         min-height: 30px;
         margin-bottom: 0px;
         .navbar-brand {
             padding: 0px 15px;
             height: auto;
+            img {
+                margin-top: 5px;
+            }
         }
         li {
             a {
@@ -14,7 +17,7 @@ header {
                 text-transform: uppercase;
                 border-radius: 4px;
                 line-height: 10px;
-                color: $white;
+                color: #000;
                 &.blue {
                     color: $blue;
                 }
@@ -23,7 +26,7 @@ header {
                 &:active {
                     background-color: transparent;
                     text-decoration: none;
-                    color: #c6ffed;
+                    color: #e9928c;
                 }
                 &.blue-btn {
                     background-color: #e2e2e2;
@@ -43,7 +46,7 @@ header {
             }
             &.active {
                 a {
-                    color: #c6ffed;
+                    color: #e9928c;
                 }
             }
             &.call-li {
