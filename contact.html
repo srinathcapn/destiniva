@@ -56,31 +56,32 @@
                 <div class="row" style="background-color:#fff">
                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <div class="contact-us-div">
-                            <form action="">
+                            <form id="contact-us">
                                 <h4>Send us a mail</h4>
                                 <div class="form-group">
                                     <label for="p1">Name</label>
-                                    <input type="text" class="form-control input-fields" id="pass1">
+                                    <input type="text" class="form-control input-fields" id="name">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="pass2">Email</label>
-                                    <input type="email" class="form-control input-fields" id="pass2">
+                                    <input type="email" class="form-control input-fields" id="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="pass3">Contact number </label>
-                                    <input type="number" class="form-control input-fields" id="pass3">
+                                    <input type="number" class="form-control input-fields" id="number">
                                 </div>
                                 <div class="form-group">
                                     <label for="pass3">Service required</label>
-                                    <input type="text" class="form-control input-fields" id="pass3">
+                                    <input type="text" class="form-control input-fields" id="service">
                                 </div>
                                 <div class="form-group">
                                     <label for="p1">Date</label>
-                                    <input type="date" class="form-control input-fields" id="pass1">
+                                    <input type="date" class="form-control input-fields" id="date">
                                 </div>
                                 <div style="padding-top: 10px;">
-                                    <button class="blue-small-btn" style="min-width: 150px;">Send</button>
+                                 <input type="button" id="save_c" value="Send" class="blue-small-btn" style="min-width: 150px;" onclick="validate();" />
+                                  <!--   <button id="save_c" class="blue-small-btn" style="min-width: 150px;" onclick=" return validate()">Send</button> -->
                                 </div>
                             </form>
                         </div>
@@ -162,6 +163,75 @@
                 $('#apply-save-text').html('To apply for scholarships');
             });
         });
+
+        function validate(){
+        	var name=$('#name').val();
+        	var email=$('#email').val();
+        	var number=$('#number').val();
+        	var service=$('#service').val();
+        	var date=$('#date').val();
+
+        	var phone_length = number.length;
+			var patt = /^.+@.+[.].{2,}$/i;
+
+        	$('.error').html('');
+        	$('.success')
+
+        	if(name==""){
+        		$('#name').focus();
+        		$('#name').after('<span class="error" style="color:red"> Please enter name</span>' );
+        		return false;
+        	} else if(email==""){
+        		$('#email').focus();
+        		$('#email').after('<span class="error" style="color:red"> Please enter email Id</span>' );
+        		return false;
+        	} else if (!patt.test(email)) {
+		        $('#email_id').focus();
+		        $('#email_id').after('<span class="error" style="color:red"> Please enter valid email Id</span>');
+		        return false;
+    		} else if(number==""){
+        		$('#number').focus();
+        		$('#number').after('<span class="error" style="color:red"> Please enter contact number</span>' );
+        		return false;
+        	} else if(phone_length<8){
+				$('#number').focus();
+				$('#number').after('<span class="error" style="color:red"> Please enter valid contact number</span>');
+				return false;
+			} else if(service==""){
+        		$('#service').focus();
+        		$('#service').after('<span class="error" style="color:red"> Please enter service details</span>' );
+        		return false;
+        	} else if(date==""){
+        		$('#date').focus();
+        		$('#date').after('<span class="error" style="color:red"> Please enter date</span>' );
+        		return false;
+        	} else {
+
+        		 $.ajax({
+		            url: "functions.php?action=insert",
+		            type: "POST",
+		            dataType: "json",
+		            data: { name:name,phone:number,email_id:email,service:service,date:date},
+		            beforeSend: function() {
+			                $('#save_c').text('Submitting....');
+			                $('#save_c').prop('disabled',true);
+			        },success: function (res) {
+			        	$('#contact-us')[0].reset();
+			        	$('#save_c').prop('disabled',false);
+			        	$('#save_c').text('Save');
+		            	$('#save_c').after('<span class="success" style="color:green"> Thank you. We will get back to you soon</span>');
+
+			            setTimeout(function(){
+			            	$('.success').html('');
+			            },5000)
+            		}
+
+        	});
+        		return true;
+
+
+        	}
+        }
     </script>
 </body>
 
